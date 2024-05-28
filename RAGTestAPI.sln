@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAGTestAPI", "RAGTestAPI\RAGTestAPI.csproj", "{73CBF09B-A30E-4FA2-B823-672E4413B242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAGChat", "RAGChat\RAGChat.csproj", "{F87A99A8-7D2E-489B-9DEF-1A593BD62B05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73CBF09B-A30E-4FA2-B823-672E4413B242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CBF09B-A30E-4FA2-B823-672E4413B242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CBF09B-A30E-4FA2-B823-672E4413B242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CBF09B-A30E-4FA2-B823-672E4413B242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87A99A8-7D2E-489B-9DEF-1A593BD62B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87A99A8-7D2E-489B-9DEF-1A593BD62B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87A99A8-7D2E-489B-9DEF-1A593BD62B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87A99A8-7D2E-489B-9DEF-1A593BD62B05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA42B30E-FC6C-4E48-9F4C-B84171169879}
+	EndGlobalSection
+EndGlobal

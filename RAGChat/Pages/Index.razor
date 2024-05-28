@@ -1,0 +1,89 @@
+﻿@page "/"
+
+<PageTitle>Min RAG Chatt</PageTitle>
+
+@if(conversation.Count > 0)
+{
+
+
+<div class="container chat">
+    @foreach(var c in @conversation)
+    {
+        
+            @if(c.Role == Role.Human)
+            {
+                <div class="container darker">
+                    <img src="/images/chucknorris.jpg" alt="Avatar" class="right">
+                    <p>@c.Content</p>
+                    <span class="time-left">@c.Time.ToShortTimeString()</span>
+                </div>
+            }
+            else
+            {
+                <div class="container">
+                    <img src="/images/bot.png" alt="Avatar">
+                    <p>@c.Content</p>
+                    <span class="time-right">@c.Time.ToShortTimeString()</span>
+                </div>
+            }
+
+    }
+</div>
+}
+<input value="@question" @onchange="OnChangeText" />
+<button class="btn btn-primary" @onclick="QueryAPI">Skicka fråga</button>
+
+
+@code {
+    public enum Role
+    {
+        Human,
+        Bot
+    }
+
+    public class Message
+    {
+        public string Content { get; set; } = string.Empty;
+        public DateTime Time { get; set; }
+        public Role Role { get; set; }
+
+    }
+
+    private string question;
+
+    private List<Message> conversation = new List<Message>();
+
+    private async Task QueryAPI()
+    {
+        conversation.Add(new Message
+        {
+            Content = question,
+            Time = DateTime.Now,
+            Role = Role.Human,
+
+        });
+        var httpClient = new HttpClient();
+
+        var response = await httpClient.GetAsync($"https://localhost:44361/api/Search?question={question}");
+        response.EnsureSuccessStatusCode();
+
+
+
+        var answer = await response.Content.ReadAsStringAsync();
+
+        conversation.Add(new Message
+        {
+            Content = answer,
+            Time = DateTime.Now,
+            Role = Role.Bot,
+
+        });
+
+        question = string.Empty;
+    }
+
+    private void OnChangeText(ChangeEventArgs e)
+    {
+        question = e?.Value?.ToString();
+    }
+}
