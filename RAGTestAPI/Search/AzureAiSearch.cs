@@ -1,7 +1,6 @@
 ﻿using Azure;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Models;
-using OpenAI;
 
 namespace RAGTestAPI.Search
 {

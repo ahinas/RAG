@@ -1,4 +1,4 @@
-using OpenAI;
+using RAGTestAPI;
 using RAGTestAPI.LLM;
 using RAGTestAPI.Search;
 

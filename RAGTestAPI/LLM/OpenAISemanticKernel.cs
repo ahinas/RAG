@@ -1,7 +1,6 @@
 ﻿using Azure;
 using Azure.AI.OpenAI;
 using Microsoft.SemanticKernel;
-using OpenAI;
 
 namespace RAGTestAPI.LLM
 {

@@ -1,4 +1,4 @@
-﻿namespace OpenAI
+﻿namespace RAGTestAPI
 {
     public class SecretAppsettingReader
     {
