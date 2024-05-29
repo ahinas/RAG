@@ -34,7 +34,6 @@ namespace RAGTestAPI.Search
 
             var searchResponse = (SearchResults<AzureSearchResponse>)srchclient.Search<AzureSearchResponse>(question, options);
 
-            var a = searchResponse.SemanticSearch.Answers;
             var topResponses = searchResponse.GetResults().OrderByDescending(r => r.Score).Take(2);
 
             return new SearchResultDto

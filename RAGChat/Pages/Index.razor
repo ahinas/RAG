@@ -9,24 +9,22 @@
 <div class="container chat">
     @foreach(var c in @conversation)
     {
-        
-            @if(c.Role == Role.Human)
-            {
-                <div class="container darker">
-                    <img src="/images/chucknorris.jpg" alt="Avatar" class="right">
-                    <p>@c.Content</p>
-                    <span class="time-left">@c.Time.ToShortTimeString()</span>
-                </div>
-            }
-            else
-            {
-                <div class="container">
-                    <img src="/images/bot.png" alt="Avatar">
-                    <p>@c.Content</p>
-                    <span class="time-right">@c.Time.ToShortTimeString()</span>
-                </div>
-            }
-
+        @if(c.Role == Role.Human)
+        {
+            <div class="container darker">
+                <img src="/images/chucknorris.jpg" alt="Avatar" class="right">
+                <p>@c.Content</p>
+                <span class="time-left">@c.Time.ToShortTimeString()</span>
+            </div>
+        }
+        else
+        {
+            <div class="container">
+                <img src="/images/bot.png" alt="Avatar">
+                <p>@c.Content</p>
+                <span class="time-right">@c.Time.ToShortTimeString()</span>
+            </div>
+        }
     }
 </div>
 }

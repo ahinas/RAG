@@ -12,6 +12,10 @@
         {
             return ReadSection<string>("LLM:Endpoint");
         }
+        public string GetLLMModelName()
+        {
+            return ReadSection<string>("LLM:ModelName");
+        }
 
         public string GetAzureSearchApiKey()
         {

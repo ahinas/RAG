@@ -15,18 +15,15 @@ namespace RAGTestAPI.LLM
 
         public async Task<string> GetCompletionAsync(string question, string context)
         {
-            var apiKey = _secretAppsettingReader.ReadSection<string>("LLM:ApiKey");
-            var endpoint = _secretAppsettingReader.ReadSection<string>("LLM:Endpoint");
+            var apiKey = _secretAppsettingReader.GetLLMApiKey();
+            var endpoint = _secretAppsettingReader.GetLLMEndpoint();
+            var modelName = _secretAppsettingReader.GetLLMModelName();
 
             if (string.IsNullOrEmpty(context))
                 return "Tyvärr, jag kan inte svara på den frågan";
 
-            var client = new OpenAIClient(
-            new Uri(endpoint),
-            new AzureKeyCredential(apiKey));
-
             var kernel = Kernel.CreateBuilder()
-            .AddAzureOpenAIChatCompletion("gpt-35-turbo", client)
+            .AddAzureOpenAIChatCompletion(modelName, endpoint, apiKey)           
             .Build();
 
             var template = kernel.CreateFunctionFromPrompt(@"
