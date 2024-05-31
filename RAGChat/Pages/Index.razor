@@ -28,8 +28,14 @@
     }
 </div>
 }
-<input value="@question" @onchange="OnChangeText" />
-<button class="btn btn-primary" @onclick="QueryAPI">Skicka fråga</button>
+<div class="container" style="display:flex; justify-content:left; height:fit-content; width:fit-content; background-color:aliceblue">
+    <textarea value="@question" @onchange="OnChangeText" style="min-width:400px"/>
+    <div style="padding:10px; align-self: center;">
+        <button class="btn btn-primary" @onclick="QueryAPI">Skicka fråga</button>
+    </div>
+
+</div>
+
 
 
 @code {

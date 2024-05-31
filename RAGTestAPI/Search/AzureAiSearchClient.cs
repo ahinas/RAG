@@ -1,14 +1,15 @@
 ﻿using Azure;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Models;
+using System.Text.Json.Serialization;
 
 namespace RAGTestAPI.Search
 {
-    public class AzureAiSearch : ISearchClient
+    public class AzureAiSearchClient : ISearchClient
     {
         private SecretAppsettingReader _secretAppsettingReader;
 
-        public AzureAiSearch(SecretAppsettingReader secretAppsettingReader)
+        public AzureAiSearchClient(SecretAppsettingReader secretAppsettingReader)
         {
             _secretAppsettingReader = secretAppsettingReader;
         }
@@ -34,7 +35,7 @@ namespace RAGTestAPI.Search
 
             var searchResponse = (SearchResults<AzureSearchResponse>)srchclient.Search<AzureSearchResponse>(question, options);
 
-            var topResponses = searchResponse.GetResults().OrderByDescending(r => r.Score).Take(2);
+            var topResponses = searchResponse.GetResults().OrderByDescending(r => r.Score).Take(3);
 
             return new SearchResultDto
             {
@@ -44,6 +45,16 @@ namespace RAGTestAPI.Search
             };
 
         }
+    }
+
+    sealed class AzureSearchResponse
+    {
+        [JsonPropertyName("content")]
+        public required string Content { get; set; }
+        [JsonPropertyName("url")]
+        public required string Url { get; set; }
+        [JsonPropertyName("filepath")]
+        public required string Filepath { get; set; }
     }
 
 }
