@@ -12,10 +12,10 @@ namespace RAGTestAPI.LLM
             _secretAppsettingReader = secretAppsettingReader;
         }
 
-        public async Task<string> GetCompletionAsync(string question, string context)
+        public async Task<string> GetCompletionAsync(string question, string searchResult)
         {
           
-            if (string.IsNullOrEmpty(context))
+            if (string.IsNullOrEmpty(searchResult))
                 return "Tyvärr, jag kan inte svara på den frågan";
 
 
@@ -38,10 +38,10 @@ namespace RAGTestAPI.LLM
                     Om du inte kan svara på frågan med hjälp av Informationen så svara att du inte kan hjälpa till, men att användaren gärna får ställa en annan fråga.
                     =======            
                     Information:
-                    {context}     
+                    {searchResult}     
                     =======");
 
-            var userMessagePromt = new ChatMessageContent(AuthorRole.User, @$"
+            var userMessagePrompt = new ChatMessageContent(AuthorRole.User, @$"
                     =======
                     Fråga:
                     {question}
@@ -52,7 +52,7 @@ namespace RAGTestAPI.LLM
             var history = new ChatHistory
             {
                 systemMessagePrompt,
-                userMessagePromt
+                userMessagePrompt
             };
 
             var result = await chatCompletionService.GetChatMessageContentsAsync(
